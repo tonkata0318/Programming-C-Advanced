@@ -1,0 +1,42 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace GenericCountMethodDouble
+{
+    public class Box<T> where T : IComparable<T>
+    {
+        private T value;
+        public T Value { get { return this.value; } set { this.value = value; } }
+        private List<T> list;
+        public List<T> List { get { return this.list; } set { this.list = value; } }
+        public Box()
+        {
+            list = new List<T>();
+        }
+        public override string ToString()
+        {
+            return $"{typeof(T)}: {value}";
+        }
+        public void Swap(int index1, int index2)
+        {
+            T temp = list[index1];
+            list[index1] = list[index2];
+            list[index2] = temp;
+        }
+        public int CountOfBiggerEl(T element)
+        {
+            int count = 0;
+            for (int i = 0; i < list.Count; i++)
+            {
+                if (list[i].CompareTo(element) == 1)
+                {
+                    count++;
+                }
+            }
+            return count;
+        }
+    }
+}
